@@ -1,0 +1,131 @@
+INTRODUCTION
+
+The Simple, Scalable, Script-based Science Processor for Missions (S4PM) 
+is a system for highly automated processing of science data.  It is the 
+main processing engine at the Goddard Earth Sciences Data and Information 
+Services Center (GES DISC).  In addition to being scalable up to large 
+processing systems such as the GES DISC, it is also scalable down to small, 
+special-purpose processing strings.
+
+It consists of two main parts:  the kernel is the Simple, Scalable, 
+Script-based Science Processor (S4P), an engine, toolkit and graphical monitor 
+for automating script-based, data-driven processing.  The S4PM system is 
+built on top of S4P and implements a fully functioning processing system 
+that supports a variety of science processing algorithms and scenarios.
+In addition to S4P and S4PM, a third component is S4PM_CFG which contains
+configuration file templates. Finally, there is an optional S4PM_TEST
+package introduced in release 5.9.0. This package enables testing of a newly
+installed S4PM.
+
+Version 5.6.2 is the first version of S4PM to be released to the public under
+NASA's Open Source license (http://opensource.gsfc.nasa.gov).
+
+N.B.:  This distribution does not include several modules that are
+specific to the use of EOSDIS Core System database tables or utilities.
+These can be obtained by other ECS system operators or developers by
+contacting s4pm@daac.gsfc.nasa.gov.  However, some scripts that use
+said modules 
+
+SYSTEM REQUIREMENTS
+
+
+S4PM has been run successfully on Irix, Linux (RedHat), Solaris, Windows, and 
+Macintosh OS X. S4PM requires Perl (ideally 5.6 or higher) along with the Perl 
+Tk module. If using S4PM with ECS, the Perl DBI and DB_File modules are also 
+needed. For Mac OS X, you will need to have the optional X11 and Xcode packages
+installed as well.
+
+INSTALLATION
+
+Some effort has been made to provide a CPAN-like installation process;
+however, there is still some work to be done to "shrink-wrap" the S4PM
+system.  Also, there is work to be done after installation in order to
+set up a functional processing string with real science algorithms working
+on real data.
+
+You should have at least 3 mandatory compressed tar files:
+
+    S4PM-5.x.x.tar.gz
+    S4P-5.x.x.tar.gz
+    S4PM_CFG-5.x.x.tar.gz
+
+and optionally a 4th:
+ 
+    S4PM_TEST-5.x.x.tar.gz
+
+Copy these 4 (or 3) files into some directory from which you will do the 
+installation and then unpack them. On Linux:
+
+    tar xvzf S4PM-x.x.x.tar.gz
+    tar xvzf S4P-x.x.x.tar.gz
+    tar xvzf S4PM_CFG-x.x.x.tar.gz
+    tar xvzf S4PM_TEST-x.x.x.tar.gz
+
+On other UNIX machines, you may have to unzip and untar separately:
+
+    gunzip S4PM-x.x.x.tar.gz && tar xvf S4PM-x.x.x.tar
+    gunzip S4P-x.x.x.tar.gz && tar xvf S4P-x.x.x.tar
+    gunzip S4PM_CFG-x.x.x.tar.gz && tar xvf S4PM_CFG-x.x.x.tar
+    gunzip S4PM_TEST-x.x.x.tar.gz && tar xvf S4PM_TEST-x.x.x.tar
+                                                                                
+Unpacking these tar files will result in three subdirectories: S4P-x.x.x,
+S4PM-x.x.x, S4PM_CFG-x.x.x, and S4PM_TEST-x.x.x.
+                                                                                
+Change directories into the S4P-x.x.x directory first:
+                                                                                
+    cd S4P-x.x.x
+                                                                                
+For installation of the binaries into the standand system directories on
+your machine, run:
+                                                                                
+    perl Makefile.PL
+    make
+    make test (optional)
+    make install
+    make clean (optional)
+                                                                                
+If you want to install into a non standard directory, instead use
+                                                                                
+    perl Makefile.PL PREFIX=<alternate_directory>
+    make
+    make test (optional)
+    make install
+    make clean (optional)
+
+Change directories into the S4PM_CFG-x.x.x next and then run the same steps
+as above.
+                                                                                
+Change directories into the S4PM-x.x.x next and then run the same steps as 
+above.
+
+Optionally, change directories into the S4PM_TEST-x.x.x. Here, the procedure
+is different. The test package does not include a makefile. Read the README
+file for instructions or refer to the latest S4PM Installation and Configuration
+Guide.
+                                                                                
+Be aware that if you installed into a non standard directory (using PREFIX
+above), you will also have to set the PERLLIB (or PERL5LIB) environment variable
+to point to the alternate location of libraries.  And you will want the PATH 
+environment variable for the S4PM user to include the location where the 
+binaries get installed. This needs to be done prior to running the test in the
+S4PM_TEST-x.x.x package.
+
+For example:
+                                                                                
+    export PERLLIB=/home/jdoe/lib/perl5/site_perl/5.8.3:/home/jdoe/lib/perl5/site_perl/5.8.3/i386-linux-thread-multi
+    perl Makefile.PL PREFIX=/home/jdoe
+                                                                                
+will result in the bin and lib directories for S4PM being placed under
+/home/jdoe.
+
+RESOURCES
+
+S4PM On The Web:
+
+    http://s4pm.sourceforge.net/
+
+    http://s4pm.sci.gsfc.nasa.gov/
+
+    The S4PM Installation and Configuration Guide, S4PM Operations Guide, and
+    S4PM Design document can all be found at the above URL.
+

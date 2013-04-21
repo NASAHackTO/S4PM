@@ -1,0 +1,24 @@
+S4PM Bug List
+    
+    o The multi-user mode feature is usable now, but should still be 
+      considered BETA.
+
+    o Browse file allocations - There is a minor bug whereby browse files
+      (those of data type 'Browse') are allocated space in the disk pools but
+      that space is not returned to the disk pools after the file no longer
+      exists.
+
+      Browse files are typically very small. Therefore, the best workaround
+      is to assign a per file size of 1 byte per file and specify room in the
+      disk pool for a large number, say 100,000. The Browse disk pool will
+      slowly diminish one byte at a time, but if given a very large number
+      in the first place, it should take a long time before it runs out of
+      space. This is the current operational procedure at the GES DISC and
+      it has been successful. The problem isn't noticed since full clean out
+      of strings is done periodically.
+
+      There *may* be a fix for this in the future.
+
+    o Although the Data Mining Edition for S4PM has been folded formally into
+      the S4PM baseline, it is new and there may be problems in deploying
+      it. In addition, there is no available documentation yet.
